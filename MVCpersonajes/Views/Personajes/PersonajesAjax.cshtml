@@ -1,0 +1,40 @@
+﻿@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var urlApi = "https://apipersonajeexjrp.azurewebsites.net/";
+            var request = "api/Personajes";
+            $.ajax({
+                url: urlApi + request,
+                method: "GET",
+                success: function(data){
+                    var html = "";
+                    $.each(data, function (index, personaje) {
+                        html += "<tr>";
+                        html += "<td>" + personaje.nombre + "</td>";
+                        html += "<td>" + personaje.imagen + "</td>";
+                        html += "<td>" + personaje.serie + "</td>";
+                        html += "</tr>";
+                    })
+                    $("#tablapersonajes tbody").html(html);
+                }
+            })
+        })
+    </script>
+}
+ 
+<h1 style="color:blue">
+    Api Hospitales Cliente
+</h1>
+ 
+<table class="table table-bordered table-active"
+       id="tablapersonajes">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>imagen</th>
+            <th>serie</th>
+
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
